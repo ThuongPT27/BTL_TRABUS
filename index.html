@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRABUS - Tra Cứu & Tìm Đường</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="top-nav" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; height: 50px;">
+        <h2 style="margin: 0; line-height: 1;">TRABUS</h2>
+        
+        <div class="nav-actions" style="margin: 0; display: flex; align-items: center;">
+            <span id="userInfo" style="display: none; margin-right: 15px; color: white;"></span>
+            <button id="authBtn" class="btn-outline" onclick="window.location.href='login.html'">Đăng nhập</button>
+            <button class="btn-location">TP Hà Nội</button>
+        </div>
+    </div>
+
+    <div class="main-container">
+        
+        <div class="left-panel">
+            <div class="tabs">
+                <button id="tabSearch" class="tab active">TRA CỨU</button>
+                <button id="tabRoute" class="tab">TÌM ĐƯỜNG</button>
+                <button id="tabAdmin" class="tab" style="display: none;">QUẢN LÝ</button>
+            </div>
+            
+            <div id="searchForm" class="form-section active-form">
+                <input type="text" id="searchInput" placeholder="Nhập tên hoặc số tuyến...">
+            </div>
+
+            <div id="routeForm" class="form-section">
+                <div class="autocomplete-wrapper">
+                    <input type="text" id="startPoint" placeholder="Điểm xuất phát (VD: Bến Thành)..." autocomplete="off">
+                    <ul id="startSuggestions" class="suggestions-list"></ul>
+                </div>
+                
+                <div class="autocomplete-wrapper">
+                    <input type="text" id="endPoint" placeholder="Điểm kết thúc (VD: Chợ Lớn)..." autocomplete="off">
+                    <ul id="endSuggestions" class="suggestions-list"></ul>
+                </div>
+                
+                <button id="btnFindRoute" class="btn-primary">TÌM TUYẾN ĐI</button>
+            </div>
+
+            <div id="adminForm" class="form-section">
+                <h3 style="margin-bottom: 10px; color: #1c2e4a;">Thêm Tuyến Mới</h3>
+                <input type="text" id="adminId" placeholder="Số tuyến (VD: 88)">
+                <input type="text" id="adminName" placeholder="Tên tuyến">
+                <input type="text" id="adminPrice" placeholder="Giá vé (VD: 7,000 VNĐ)">
+                <input type="text" id="adminTime" placeholder="Hoạt động (VD: 05:00 - 22:00)">
+                <textarea id="adminOutbound" placeholder="Trạm lượt đi (Cách nhau bằng dấu phẩy)"></textarea>
+                <textarea id="adminInbound" placeholder="Trạm lượt về (Cách nhau bằng dấu phẩy)"></textarea>
+                <button id="btnAddBus" class="btn-primary" style="background: #27ae60;">+ THÊM TUYẾN</button>
+            </div>
+        </div>
+
+        <div class="right-panel" id="mainContent"></div>
+    </div>
+
+    <div class="footer">
+        <span>📍 Địa chỉ: Km10 Nguyễn Trãi, Hà Đông, TP. Hà Nội</span>
+        <span>📞 SĐT: 0987.654.321</span>
+        <span>📧 Email: contact@trabus.vn</span>
+        <span>🌐 FB: facebook.com/trabus.vn</span>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

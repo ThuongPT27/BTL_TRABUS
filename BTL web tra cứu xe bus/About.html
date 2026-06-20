@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu - TRABUS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="top-nav">
+        <h2 onclick="window.location.href='index.html'">TRABUS</h2>
+        <div class="nav-actions">
+            <a href="index.html" class="nav-link">Trang chủ</a>
+            <a href="about.html" class="nav-link" style="color: #a3e635;">Giới thiệu</a>
+            <a href="contact.html" class="nav-link">Liên hệ</a>
+            <a href="login.html" id="authBtn" class="nav-link">Đăng nhập</a>
+            <div id="userInfo" style="display: none; color: white; margin-right: 15px; font-size: 15px;"></div>
+            <span class="nav-link no-hover">TP Hà Nội</span>
+        </div>
+    </div>
+
+    <div style="padding: 40px; max-width: 900px; margin: 40px auto; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; height: calc(100vh - 140px); overflow-y: auto;">
+        
+        <div style="text-align: center; margin-bottom: 30px;">
+            <h1 style="color: #1c2e4a; font-size: 32px; margin-bottom: 10px;">Về TRABUS</h1>
+            <p style="color: #64748b; font-size: 16px;">Hệ thống tra cứu lộ trình xe buýt thông minh</p>
+        </div>
+
+        <p style="line-height: 1.8; color: #334155; font-size: 16px; margin-bottom: 20px; text-align: justify;">
+            Chào mừng bạn đến với <b>TRABUS</b> - nền tảng tra cứu và tìm kiếm lộ trình xe buýt trực tuyến. Chúng tôi hiểu rằng việc di chuyển bằng phương tiện công cộng đôi khi mang lại sự bối rối vì mạng lưới tuyến đường chằng chịt. Đó là lý do TRABUS ra đời, mang theo sứ mệnh biến mỗi chuyến đi của bạn trở nên dễ dàng và thuận tiện nhất.
+        </p>
+
+        <h3 style="color: #1c2e4a; margin-top: 30px; margin-bottom: 15px; font-size: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px;">🎯 Sứ mệnh của chúng tôi</h3>
+        <p style="line-height: 1.8; color: #334155; font-size: 16px; margin-bottom: 20px; text-align: justify;">
+            Khuyến khích và hỗ trợ người dân sử dụng phương tiện giao thông công cộng thông qua công nghệ. Chúng tôi mong muốn góp phần giảm thiểu ùn tắc giao thông, bảo vệ môi trường và xây dựng một thành phố thông minh, xanh sạch.
+        </p>
+
+        <h3 style="color: #1c2e4a; margin-top: 30px; margin-bottom: 15px; font-size: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px;">🌟 Tính năng nổi bật</h3>
+        <ul style="line-height: 1.8; color: #334155; font-size: 16px; margin-left: 20px;">
+            <li><b>Tra cứu thông tin:</b> Cung cấp chi tiết các trạm đi/về, giá vé và thời gian hoạt động.</li>
+            <li><b>Thuật toán thông minh:</b> Tự động gợi ý tuyến đi thẳng hoặc kết hợp 2 chuyến tối ưu nhất.</li>
+            <li><b>Trải nghiệm cá nhân hóa:</b> Lưu trữ lịch sử tìm kiếm và đánh dấu địa điểm yêu thích (Smart Auto-Favorite).</li>
+            <li><b>Quản lý dữ liệu (Admin):</b> Cung cấp công cụ mạnh mẽ để thêm mới và cập nhật tuyến xe nhanh chóng.</li>
+        </ul>
+
+        <div style="margin-top: 50px; text-align: center; padding-top: 20px; border-top: 1px dashed #cbd5e1;">
+            <button onclick="window.location.href='index.html'" style="background: #1c2e4a; color: white; border: none; padding: 12px 24px; font-size: 15px; font-weight: bold; border-radius: 8px; cursor: pointer; transition: 0.2s;">
+                TRẢI NGHIỆM TÌM ĐƯỜNG NGAY
+            </button>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const activeSession = localStorage.getItem('busmap_current_session');
+            const activeRole = localStorage.getItem('busmap_current_role');
+            
+            if (activeSession) {
+                document.getElementById('authBtn').style.display = 'none'; 
+                const userInfo = document.getElementById('userInfo');
+                let roleBadge = activeRole === 'admin' ? '[Quản Trị Viên]' : '';
+                userInfo.style.display = 'inline-block';
+                userInfo.innerHTML = `Xin chào, <b>${activeSession}</b> <span style="color:#ffd700">${roleBadge}</span> | <a href="#" id="btnLogout" style="color:#a3e635; text-decoration:none; margin-left:5px;">Đăng xuất</a>`;
+                
+                document.getElementById('btnLogout').addEventListener('click', function(e) {
+                    e.preventDefault(); 
+                    if (confirm("Bạn có chắc chắn muốn đăng xuất?")) {
+                        localStorage.removeItem('busmap_current_session');
+                        localStorage.removeItem('busmap_current_role');
+                        window.location.href = 'index.html'; // Đăng xuất xong đẩy về trang chủ
+                    }
+                });
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+/* ==================================== */
+/* 1. RESET & THANH CUỘN (SCROLLBAR)    */
+/* ==================================== */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+body { background-color: #f4f6f8; color: #333; overflow: hidden; } 
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 4px; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* ==================================== */
+/* 2. HEADER MENU (VINBUS STYLE)        */
+/* ==================================== */
+.top-nav { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 15px 30px; 
+    height: 60px; 
+    background-color: #1c2e4a; 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 10;
+}
+
+.top-nav h2 { 
+    margin: 0; line-height: 1; cursor: pointer; color: white; 
+}
+
+.nav-actions { display: flex; align-items: center; }
+
+.nav-link {
+    color: #ffffff; text-decoration: none; font-size: 16px; font-weight: 600;
+    cursor: pointer; position: relative; padding: 5px 20px; 
+    border-right: 1px solid rgba(255, 255, 255, 0.4); transition: 0.3s;
+}
+.nav-link:last-child { border-right: none; padding-right: 0; }
+
+.nav-link:hover::after {
+    content: ''; position: absolute; bottom: -2px; left: 50%;
+    transform: translateX(-50%); width: 24px;  height: 2px;
+    background-color: #a3e635; border-radius: 2px;
+}
+.nav-link.no-hover:hover::after { display: none; }
+
+/* ==================================== */
+/* 3. LAYOUT CỘT TRÁI (TÌM KIẾM/TAB)    */
+/* ==================================== */
+.main-container { display: flex; height: calc(100vh - 60px); }
+.left-panel { width: 320px; background: white; border-right: 1px solid #e2e8f0; padding: 20px; display: flex; flex-direction: column; z-index: 5; box-shadow: 2px 0 10px rgba(0,0,0,0.02); }
+
+.tabs { display: flex; gap: 8px; margin-bottom: 25px; width: 100%; }
+.tab { flex: 1; padding: 10px 0; background: #f1f5f9; border: none; cursor: pointer; text-align: center; font-size: 13px; font-weight: 700; color: #64748b; border-radius: 8px; white-space: nowrap; transition: 0.3s ease; }
+.tab.active { background: #1c2e4a; color: white; box-shadow: 0 4px 10px rgba(28,46,74,0.2); }
+.tab:hover:not(.active) { background: #e2e8f0; color: #334155; }
+
+.form-section { display: none; }
+.form-section.active-form { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+.input-group input, input[type="text"], input[type="password"], textarea { width: 100%; padding: 14px 16px; margin-bottom: 16px; border: 1px solid #cbd5e1; background-color: #f8fafc; border-radius: 8px; outline: none; transition: all 0.2s; font-size: 14px; }
+input[type="text"]:focus, textarea:focus { border-color: #1c2e4a; background-color: #fff; box-shadow: 0 0 0 3px rgba(28, 46, 74, 0.1); }
+
+.btn-primary { background: #1c2e4a; color: white; border: none; padding: 14px; cursor: pointer; width: 100%; font-weight: bold; border-radius: 8px; margin-top: 5px; transition: 0.2s; font-size: 14px; }
+.btn-primary:hover { background: #0f172a; box-shadow: 0 4px 12px rgba(15,23,42,0.2); }
+
+/* ==================================== */
+/* 4. CỘT PHẢI & THẺ XE BUÝT            */
+/* ==================================== */
+.right-panel { flex: 1; padding: 30px 40px; overflow-y: auto; background-color: #f8fafc; }
+.section-title { color: #1e293b; font-size: 22px; margin-bottom: 25px; font-weight: 700; }
+
+.bus-card { 
+    background: #ffffff; padding: 24px; margin-bottom: 16px; cursor: pointer; 
+    border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #f1f5f9;
+    border-left: 4px solid transparent; transition: all 0.25s ease; position: relative;
+}
+.bus-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); border-left: 4px solid #1c2e4a; }
+.bus-title { color: #0f172a; margin-bottom: 16px; font-size: 17px; font-weight: 700; }
+
+.card-info { display: flex; align-items: center; gap: 12px; }
+.info-badge { 
+    display: inline-flex; align-items: center; gap: 6px; background: #f1f5f9; color: #475569; 
+    padding: 6px 14px; border-radius: 24px; font-size: 13px; font-weight: 600; 
+}
+
+.btn-delete { float: right; background: #fee2e2; color: #ef4444; border: none; padding: 6px 12px; cursor: pointer; border-radius: 6px; font-weight: bold; font-size: 12px; transition: 0.2s; }
+.btn-delete:hover { background: #ef4444; color: white; }
+
+/* ==================================== */
+/* 5. CHI TIẾT TUYẾN DẠNG TIMELINE      */
+/* ==================================== */
+.detail-header-new { display: flex; align-items: center; margin-bottom: 25px; }
+.btn-back-icon { font-size: 22px; cursor: pointer; margin-right: 15px; color: #64748b; font-weight: bold; border: none; background: none; transition: 0.2s; }
+.btn-back-icon:hover { color: #1c2e4a; transform: translateX(-3px); }
+
+.route-tabs-container { display: flex; background-color: #f1f5f9; border-radius: 8px; margin-bottom: 25px; padding: 4px; }
+.route-tab-new { flex: 1; padding: 12px; border: none; background: transparent; cursor: pointer; font-size: 14px; font-weight: 600; color: #64748b; border-radius: 6px; transition: 0.3s; }
+.route-tab-new.active { background-color: white; color: #1c2e4a; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+
+.stop-list-new { list-style: none; margin-left: 10px; padding-left: 25px; position: relative; }
+.stop-list-new::before { content: ''; position: absolute; top: 15px; bottom: 25px; left: 4px; width: 2px; background-color: #cbd5e1; }
+.stop-list-new li { position: relative; padding: 16px 0; font-size: 15px; color: #334155; font-weight: 500; }
+.stop-list-new li::before { content: ''; position: absolute; left: -25px; top: 50%; transform: translateY(-50%); width: 10px; height: 10px; background-color: #94a3b8; border-radius: 50%; z-index: 1; border: 2px solid white; }
+.stop-list-new li:first-child::before, .stop-list-new li:last-child::before { width: 14px; height: 14px; left: -27px; background-color: #1c2e4a; }
+.stop-list-new li:first-child::after, .stop-list-new li:last-child::after { content: ''; position: absolute; left: -22px; top: 50%; transform: translateY(-50%); width: 4px; height: 4px; background-color: white; border-radius: 50%; z-index: 2; }
+
+/* ==================================== */
+/* 6. AUTOCOMPLETE (GỢI Ý TỪ KHÓA)      */
+/* ==================================== */
+.autocomplete-wrapper { position: relative; margin-bottom: 16px; }
+.autocomplete-wrapper input { margin-bottom: 0 !important; }
+.suggestions-list { position: absolute; top: calc(100% + 4px); left: 0; width: 100%; background: white; border: 1px solid #e2e8f0; border-radius: 8px; max-height: 220px; overflow-y: auto; z-index: 1000; list-style: none; display: none; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+.suggestions-list li { padding: 12px 16px; cursor: pointer; border-bottom: 1px solid #f1f5f9; color: #334155; font-size: 14px; transition: 0.2s; }
+.suggestions-list li:last-child { border-bottom: none; }
+.suggestions-list li:hover { background-color: #f8fafc; color: #1c2e4a; font-weight: 600; padding-left: 20px; } 
+
+/* ==================================== */
+/* 7. TRẠNG THÁI TRỐNG (EMPTY STATE)    */
+/* ==================================== */
+.empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 80%; text-align: center; color: #64748b; }
+.empty-state img { width: 200px; margin-bottom: 25px; opacity: 0.9; animation: float 3s ease-in-out infinite; }
+.empty-state h2 { color: #1c2e4a; font-size: 22px; margin-bottom: 12px; border: none; }
+.empty-state p { font-size: 15px; max-width: 450px; line-height: 1.6; }
+@keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
+
+/* ==================================== */
+/* 8. SUB-TABS (TRẠM DỪNG / BIỂU ĐỒ)    */
+/* ==================================== */
+.view-tabs-container { display: flex; border-bottom: 2px solid #e2e8f0; margin-bottom: 20px; }
+.view-tab { flex: 1; padding: 12px; background: none; border: none; font-size: 15px; font-weight: 600; color: #64748b; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: 0.2s; }
+.view-tab.active { color: #1c2e4a; border-bottom-color: #1c2e4a; }
+.view-tab:hover:not(.active) { color: #334155; }
+
+/* ==================================== */
+/* 9. BIỂU ĐỒ GIỜ (TIMETABLE GRID)      */
+/* ==================================== */
+.time-header { display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 20px; }
+.time-header .th-title { font-size: 16px; color: #1c2e4a; font-weight: 700; text-transform: uppercase; }
+.time-header .th-btn { background: #1c2e4a; color: white; width: 28px; height: 28px; display: flex; justify-content: center; align-items: center; border-radius: 50%; cursor: pointer; font-size: 12px; }
+
+.time-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 12px; padding-bottom: 30px; }
+.time-cell { background: #ffffff; padding: 10px 5px; text-align: center; border-radius: 6px; color: #475569; font-size: 15px; font-weight: 500; border: 1px solid #cbd5e1; cursor: default; transition: 0.2s; }
+.time-cell:hover { border-color: #94a3b8; }
+.time-cell.past { opacity: 0.4; background: #f8fafc; }
+.time-cell.active { background: #1c2e4a; color: white; border-color: #1c2e4a; font-weight: 700; transform: scale(1.05); box-shadow: 0 4px 10px rgba(28, 46, 74, 0.2); }
+
+/* ==================================== */
+/* 10. LỊCH SỬ TÌM KIẾM ĐƯỜNG ĐI        */
+/* ==================================== */
+.history-list { list-style: none; padding: 0; margin: 0; }
+.history-list li {
+    background: #f8fafc; padding: 12px; margin-bottom: 8px;
+    border-radius: 8px; font-size: 13.5px; color: #334155;
+    border: 1px solid #e2e8f0; transition: all 0.2s ease;
+    
+    /* Thiết lập flexbox để căn lề chữ bên trái, dấu X bên phải */
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+}
+.history-list li:hover { background: #e2e8f0; border-color: #cbd5e1; }
+.history-list li:last-child { margin-bottom: 0; }
+
+/* Nút xóa lẻ từng mục lịch sử */
+/* Nút xóa lẻ từng mục lịch sử */
+.delete-history-item {
+    font-size: 22px; 
+    line-height: 1;
+    color: #94a3b8;
+    transition: 0.2s; 
+    padding: 0 5px; 
+    cursor: pointer;
+    font-weight: bold;
+}
+.delete-history-item:hover { 
+    transform: scale(1.2); 
+    color: #ef4444; 
+}
+/* ==================================== */
+/* 11. ĐỊA ĐIỂM YÊU THÍCH (FAVORITES)   */
+/* ==================================== */
+/* Nút sao bên cạnh ô nhập */
+.btn-icon-fav {
+    background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px;
+    padding: 0 14px; font-size: 16px; cursor: pointer; transition: 0.2s;
+}
+.btn-icon-fav:hover { background: #fde68a; transform: scale(1.05); }
+
+/* Khu vực thẻ yêu thích (Chips) */
+.fav-chips-container { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.fav-chip {
+    background: #fffbeb; color: #b45309; padding: 6px 12px; border-radius: 20px;
+    font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid #fde68a;
+    transition: all 0.2s; display: flex; align-items: center; gap: 6px;
+}
+.fav-chip:hover { background: #fde68a; transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+.fav-chip .remove-fav { color: #ef4444; font-weight: bold; font-size: 16px; line-height: 1; margin-left: 2px; }
+.fav-chip .remove-fav:hover { color: #b91c1c; }
