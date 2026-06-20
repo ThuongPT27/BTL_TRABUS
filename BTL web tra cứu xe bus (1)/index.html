@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ - TRABUS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="top-nav">
+        <h2 onclick="window.location.href='index.html'">TRABUS</h2>
+        <div class="nav-actions">
+            <a href="about.html" class="nav-link">Giới thiệu</a>
+            
+            <a href="contact.html" class="nav-link">Liên hệ</a>
+            <a href="login.html" id="authBtn" class="nav-link">Đăng nhập</a>
+            
+            <div id="userInfo" style="display: none; color: white; margin-right: 15px; font-size: 15px;"></div>
+            <span class="nav-link no-hover">TP Hà Nội</span>
+        </div>
+    </div>
+
+    <div class="main-container">
+        
+        <div class="left-panel">
+            <div class="tabs">
+                <button class="tab active" id="tabSearch">TRA CỨU</button>
+                <button class="tab" id="tabRoute">TÌM ĐƯỜNG</button>
+                <button class="tab" id="tabAdmin" style="display: none;">QUẢN LÝ</button>
+            </div>
+
+            <div id="searchForm" class="form-section active-form">
+                <div class="input-group">
+                    <input type="text" id="searchInput" placeholder="Nhập tên hoặc số tuyến...">
+                </div>
+            </div>
+
+            <div id="routeForm" class="form-section">
+                <div class="autocomplete-wrapper">
+                    <input type="text" id="startPoint" placeholder="Điểm xuất phát (VD: Bến Thành)..." autocomplete="off">
+                    <ul class="suggestions-list" id="startSuggestions"></ul>
+                </div>
+                <div class="autocomplete-wrapper">
+                    <input type="text" id="endPoint" placeholder="Điểm kết thúc (VD: Chợ Lớn)..." autocomplete="off">
+                    <ul class="suggestions-list" id="endSuggestions"></ul>
+                </div>
+                <button class="btn-primary" id="btnFindRoute">TÌM TUYẾN ĐI</button>
+
+                <div id="historyContainer" style="display: none; margin-top: 25px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <h4 style="font-size: 13px; color: #64748b; margin: 0;">🕒 TÌM KIẾM GẦN ĐÂY</h4>
+                        <span id="clearHistoryBtn" style="font-size: 12px; color: #ef4444; cursor: pointer; font-weight: 600;">Xóa</span>
+                    </div>
+                    <ul id="historyList" class="history-list"></ul>
+                </div>
+            </div>
+
+            <div id="adminForm" class="form-section">
+                <input type="text" id="adminId" placeholder="Số tuyến (VD: 01)">
+                <input type="text" id="adminName" placeholder="Tên tuyến (VD: Bến Thành - Chợ Lớn)">
+                <input type="text" id="adminPrice" placeholder="Giá vé (VD: 10,000 VNĐ)">
+                <input type="text" id="adminTime" placeholder="Thời gian (VD: 05:00 - 20:15)">
+                <textarea id="adminOutbound" rows="3" placeholder="Lượt đi: Nhập các trạm, cách nhau bằng dấu phẩy"></textarea>
+                <textarea id="adminInbound" rows="3" placeholder="Lượt về: Nhập các trạm, cách nhau bằng dấu phẩy"></textarea>
+                <button class="btn-primary" id="btnAddBus">LƯU TUYẾN XE</button>
+            </div>
+        </div>
+
+        <div class="right-panel" id="mainContent">
+            </div>
+
+    </div>
+
+    <script src="data.js"></script>
+    <script src="main.js"></script>    
+    <script src="ui.js"></script>      
+    <script src="search.js"></script>  
+    <script src="admin.js"></script>   
+</body>
+</html>
+
